@@ -3,11 +3,28 @@
 	import { page } from '$app/state';
 	import { onMount } from 'svelte';
 	import { base } from '$app/paths';
+	// @ts-expect-error
+	import { pwaInfo } from 'virtual:pwa-info';
 
+	// @ts-ignore
 	let { children } = $props();
 
-	onMount(() => {
+	onMount(async () => {
 		navigator.storage?.persist?.();
+
+		if (pwaInfo) {
+			// @ts-expect-error
+			const { registerSW } = await import('virtual:pwa-register');
+			registerSW({
+				immediate: true,
+				onRegisteredSW(swUrl, r) {
+					console.log(`Service Worker at: ${swUrl}`);
+				},
+				onRegisterError(error) {
+					console.error('Service Worker registration error', error);
+				}
+			});
+		}
 	});
 
 	const tabs = [
