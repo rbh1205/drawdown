@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import { page } from '$app/state';
 	import { goto } from '$app/navigation';
+	import { base } from '$app/paths';
 	import { getBag, saveBag } from '$lib/db/bags.js';
 	import { getAllRoasters, saveRoaster } from '$lib/db/roasters.js';
 	import { getAllOrigins, saveOrigin } from '$lib/db/origins.js';
@@ -124,14 +125,14 @@
 			roastDate: roastDate || undefined
 		};
 		await saveBag(updated);
-		await goto(`/bag/${bagId}`);
+		await goto(`${base}/bag/${bagId}`);
 	}
 </script>
 
 <div class="page">
 	<header class="page-header">
 		<div class="header-row">
-			<a href="/bag/{bagId}" class="back-btn" aria-label="Back">‹ Back</a>
+			<a href="{base}/bag/{bagId}" class="back-btn" aria-label="Back">‹ Back</a>
 			<h1>Edit bag</h1>
 			<div style="width:56px"></div>
 		</div>
@@ -144,7 +145,7 @@
 			<div class="empty-state">
 				<span class="icon">❓</span>
 				<p>Bag not found.</p>
-				<a href="/" class="btn btn-secondary">Go home</a>
+				<a href="{base}/" class="btn btn-secondary">Go home</a>
 			</div>
 		{:else}
 			<form onsubmit={handleSubmit}>

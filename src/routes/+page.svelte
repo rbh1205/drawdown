@@ -3,6 +3,7 @@
 	import { getActiveBags, getAllBags } from '$lib/db/bags.js';
 	import { getRoaster } from '$lib/db/roasters.js';
 	import { getOrigin } from '$lib/db/origins.js';
+	import { base } from '$app/paths';
 	import type { Bag } from '$lib/types.js';
 
 	type EnrichedBag = Bag & { roasterName: string; originName: string };
@@ -66,8 +67,8 @@
 		<div class="header-row">
 			<h1>My Rotation</h1>
 			<div class="header-right">
-				<a href="/settings" class="icon-btn" aria-label="Settings">⚙</a>
-				<a href="/add-bag" class="btn btn-primary add-btn" aria-label="Add new bag">
+				<a href="{base}/settings" class="icon-btn" aria-label="Settings">⚙</a>
+				<a href="{base}/add-bag" class="btn btn-primary add-btn" aria-label="Add new bag">
 					＋ Add bag
 				</a>
 			</div>
@@ -87,7 +88,7 @@
 				{:else}
 					<p>No bags in rotation yet.</p>
 				{/if}
-				<a href="/add-bag" class="btn btn-primary btn-full">
+				<a href="{base}/add-bag" class="btn btn-primary btn-full">
 					{hasArchivedBags ? 'Add a new bag' : 'Add your first bag'}
 				</a>
 			</div>
@@ -95,7 +96,7 @@
 			<ul class="bag-list">
 				{#each bags as bag (bag.id)}
 					<li>
-						<a href="/bag/{bag.id}" class="bag-card">
+						<a href="{base}/bag/{bag.id}" class="bag-card">
 							<div class="bag-info">
 								<span class="bag-name">{bag.name}</span>
 								<span class="bag-meta">{bag.roasterName} · {bag.originName}</span>

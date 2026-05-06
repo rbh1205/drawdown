@@ -4,6 +4,7 @@
 	import { getBag, updateBagRating } from '$lib/db/bags.js';
 	import { getRoaster } from '$lib/db/roasters.js';
 	import { getOrigin } from '$lib/db/origins.js';
+	import { base } from '$app/paths';
 	import { getSettingsForBag } from '$lib/db/grind-settings.js';
 	import { getGrinder } from '$lib/db/grinders.js';
 	import { getBrewMethod } from '$lib/db/brew-methods.js';
@@ -80,7 +81,7 @@
 <div class="page">
 	<header class="page-header">
 		<div class="header-row">
-			<a href="/archive" class="back-btn" aria-label="Back to archive">‹ Archive</a>
+			<a href="{base}/archive" class="back-btn" aria-label="Back to archive">‹ Archive</a>
 			<h1 class="header-title">{bag?.name ?? '…'}</h1>
 			<div style="min-width:72px"></div>
 		</div>
@@ -93,7 +94,7 @@
 			<div class="empty-state">
 				<span class="icon">❓</span>
 				<p>Bag not found.</p>
-				<a href="/archive" class="btn btn-secondary">Back to archive</a>
+				<a href="{base}/archive" class="btn btn-secondary">Back to archive</a>
 			</div>
 		{:else}
 			<div class="archived-badge">

@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import { getAllBrewMethods, saveBrewMethod, safeDeleteBrewMethod } from '$lib/db/brew-methods.js';
 	import type { BrewMethod } from '$lib/types.js';
+	import { base } from '$app/paths';
 
 	let methods = $state<BrewMethod[]>([]);
 	let loading = $state(true);
@@ -48,7 +49,7 @@
 <div class="page">
 	<header class="page-header">
 		<div class="header-row">
-			<a href="/settings" class="back-btn" aria-label="Back">‹ Back</a>
+			<a href="{base}/settings" class="back-btn" aria-label="Back">‹ Back</a>
 			<h1>Brew methods</h1>
 			<div style="width:56px"></div>
 		</div>

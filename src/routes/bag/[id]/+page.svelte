@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import { page } from '$app/state';
 	import { goto } from '$app/navigation';
+	import { base } from '$app/paths';
 	import { getBag, archiveBag } from '$lib/db/bags.js';
 	import { getRoaster } from '$lib/db/roasters.js';
 	import { getOrigin } from '$lib/db/origins.js';
@@ -115,7 +116,7 @@
 		showRatingPrompt = false;
 		finishing = true;
 		await archiveBag(bag!.id, score ?? undefined);
-		goto('/');
+		goto(base + '/');
 	}
 
 	async function setNextAdjustment(setting: GrindSetting, value: GrindSetting['nextAdjustment'] | null) {
@@ -140,12 +141,12 @@
 <div class="page">
 	<header class="page-header">
 		<div class="header-row">
-			<a href="/" class="back-btn" aria-label="Back to home">‹ Back</a>
+			<a href="{base}/" class="back-btn" aria-label="Back to home">‹ Back</a>
 			<h1 class="header-title">{bag?.name ?? '…'}</h1>
 			{#if bag}
 				<div class="header-actions">
-					<a href="/settings" class="icon-btn" aria-label="Settings">⚙</a>
-					<a href="/bag/{bag.id}/edit" class="edit-btn" aria-label="Edit bag">Edit</a>
+					<a href="{base}/settings" class="icon-btn" aria-label="Settings">⚙</a>
+					<a href="{base}/bag/{bag.id}/edit" class="edit-btn" aria-label="Edit bag">Edit</a>
 				</div>
 			{:else}
 				<div style="width:80px"></div>
@@ -160,7 +161,7 @@
 			<div class="empty-state">
 				<span class="icon">❓</span>
 				<p>Bag not found.</p>
-				<a href="/" class="btn btn-secondary">Go home</a>
+				<a href="{base}/" class="btn btn-secondary">Go home</a>
 			</div>
 		{:else}
 			<section class="bag-details card">
@@ -251,7 +252,7 @@
 					{:else}
 						<h2 class="section-title">Grind settings</h2>
 					{/if}
-					<a href="/bag/{bag.id}/log-setting" class="btn btn-primary btn-sm">
+					<a href="{base}/bag/{bag.id}/log-setting" class="btn btn-primary btn-sm">
 						＋ Log setting
 					</a>
 				</div>
@@ -260,7 +261,7 @@
 					<div class="empty-state grind-empty">
 						<span class="icon">⚙️</span>
 						<p>No grind settings yet.</p>
-						<a href="/bag/{bag.id}/log-setting" class="btn btn-primary">Log first setting</a>
+						<a href="{base}/bag/{bag.id}/log-setting" class="btn btn-primary">Log first setting</a>
 					</div>
 				{:else if !selectedGroup}
 					<ul class="method-list">

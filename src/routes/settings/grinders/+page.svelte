@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import { getAllGrinders, saveGrinder, safeDeleteGrinder } from '$lib/db/grinders.js';
 	import type { Grinder } from '$lib/types.js';
+	import { base } from '$app/paths';
 
 	let grinders = $state<Grinder[]>([]);
 	let loading = $state(true);
@@ -73,7 +74,7 @@
 <div class="page">
 	<header class="page-header">
 		<div class="header-row">
-			<a href="/settings" class="back-btn" aria-label="Back">‹ Back</a>
+			<a href="{base}/settings" class="back-btn" aria-label="Back">‹ Back</a>
 			<h1>Grinders</h1>
 			<div style="width:56px"></div>
 		</div>

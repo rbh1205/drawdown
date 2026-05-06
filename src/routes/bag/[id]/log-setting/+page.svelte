@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import { page } from '$app/state';
 	import { goto } from '$app/navigation';
+	import { base } from '$app/paths';
 	import { getBag } from '$lib/db/bags.js';
 	import { getAllGrinders } from '$lib/db/grinders.js';
 	import { getAllBrewMethods } from '$lib/db/brew-methods.js';
@@ -77,7 +78,7 @@
 			dateLogged: new Date().toISOString().slice(0, 10)
 		};
 		await addGrindSetting(setting);
-		await goto(`/bag/${bag.id}`);
+		await goto(`${base}/bag/${bag.id}`);
 	}
 
 	function formatDate(iso: string) {
@@ -88,7 +89,7 @@
 <div class="page">
 	<header class="page-header">
 		<div class="header-row">
-			<a href="/bag/{bag?.id ?? ''}" class="back-btn" aria-label="Back">‹ Back</a>
+			<a href="{base}/bag/{bag?.id ?? ''}" class="back-btn" aria-label="Back">‹ Back</a>
 			<h1>Log setting</h1>
 			<div style="width:56px"></div>
 		</div>
@@ -101,7 +102,7 @@
 			<div class="empty-state">
 				<span class="icon">❓</span>
 				<p>Bag not found.</p>
-				<a href="/" class="btn btn-secondary">Go home</a>
+				<a href="{base}/" class="btn btn-secondary">Go home</a>
 			</div>
 		{:else}
 			{#if grinders.length === 0 || brewMethods.length === 0}
@@ -117,10 +118,10 @@
 					</p>
 					<div class="setup-links">
 						{#if grinders.length === 0}
-							<a href="/settings/grinders" class="btn btn-primary">Add grinder</a>
+							<a href="{base}/settings/grinders" class="btn btn-primary">Add grinder</a>
 						{/if}
 						{#if brewMethods.length === 0}
-							<a href="/settings/brew-methods" class="btn btn-secondary">Add brew method</a>
+							<a href="{base}/settings/brew-methods" class="btn btn-secondary">Add brew method</a>
 						{/if}
 					</div>
 				</div>

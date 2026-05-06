@@ -3,6 +3,7 @@
 	import { page } from '$app/state';
 	import { getRoaster, saveRoaster } from '$lib/db/roasters.js';
 	import type { Roaster } from '$lib/types.js';
+	import { base } from '$app/paths';
 
 	let roaster = $state<Roaster | null>(null);
 	let loading = $state(true);
@@ -81,7 +82,7 @@
 			<div class="empty-state">
 				<span class="icon">❓</span>
 				<p>Roaster not found.</p>
-				<a href="/" class="btn btn-secondary">Go home</a>
+				<a href="{base}/" class="btn btn-secondary">Go home</a>
 			</div>
 		{:else if editing}
 			<form onsubmit={handleSave}>

@@ -3,6 +3,7 @@
 	import { getArchivedBags } from '$lib/db/bags.js';
 	import { getRoaster } from '$lib/db/roasters.js';
 	import { getOrigin } from '$lib/db/origins.js';
+	import { base } from '$app/paths';
 	import StarRating from '$lib/components/StarRating.svelte';
 	import type { Bag } from '$lib/types.js';
 
@@ -124,7 +125,7 @@
 				<ul class="bag-list">
 					{#each filteredBags as bag (bag.id)}
 						<li>
-							<a href="/archive/{bag.id}" class="bag-card">
+							<a href="{base}/archive/{bag.id}" class="bag-card">
 								<div class="bag-info">
 									<span class="bag-name">{bag.name}</span>
 									<span class="bag-meta">{bag.roasterName} · {bag.originName}</span>

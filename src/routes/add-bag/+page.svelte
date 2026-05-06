@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { goto } from '$app/navigation';
+	import { base } from '$app/paths';
 	import { saveBag } from '$lib/db/bags.js';
 	import { getAllRoasters, saveRoaster } from '$lib/db/roasters.js';
 	import { getAllOrigins, saveOrigin } from '$lib/db/origins.js';
@@ -93,14 +94,14 @@
 			dateAdded: new Date().toISOString().slice(0, 10)
 		};
 		await saveBag(bag);
-		await goto('/');
+		await goto(base + '/');
 	}
 </script>
 
 <div class="page">
 	<header class="page-header">
 		<div class="header-row">
-			<a href="/" class="back-btn" aria-label="Back">‹ Back</a>
+			<a href="{base}/" class="back-btn" aria-label="Back">‹ Back</a>
 			<h1>Add bag</h1>
 			<div style="width:56px"></div>
 		</div>

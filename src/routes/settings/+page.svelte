@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { exportAllData } from '$lib/db/export.js';
+	import { base } from '$app/paths';
 
 	let exporting = $state(false);
 	let exportError = $state('');
@@ -32,7 +33,7 @@
 <div class="page">
 	<header class="page-header">
 		<div class="header-row">
-			<a href="/" class="back-btn" aria-label="Back">‹ Back</a>
+			<a href="{base}/" class="back-btn" aria-label="Back">‹ Back</a>
 			<h1>Settings</h1>
 			<div style="width:56px"></div>
 		</div>
@@ -41,13 +42,13 @@
 	<div class="page-content">
 		<ul class="settings-list">
 			<li>
-				<a href="/settings/grinders" class="settings-row card">
+				<a href="{base}/settings/grinders" class="settings-row card">
 					<span class="settings-label">Grinders</span>
 					<span class="chevron" aria-hidden="true">›</span>
 				</a>
 			</li>
 			<li>
-				<a href="/settings/brew-methods" class="settings-row card">
+				<a href="{base}/settings/brew-methods" class="settings-row card">
 					<span class="settings-label">Brew methods</span>
 					<span class="chevron" aria-hidden="true">›</span>
 				</a>
