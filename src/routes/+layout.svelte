@@ -2,6 +2,7 @@
 	import '../app.css';
 	import { page } from '$app/state';
 	import { onMount } from 'svelte';
+	import { base } from '$app/paths';
 
 	let { children } = $props();
 
@@ -10,15 +11,18 @@
 	});
 
 	const tabs = [
-		{ href: '/',           label: 'Home'       },
-		{ href: '/archive',    label: 'Archive'    },
-		{ href: '/calculator', label: 'Calculator' },
-		{ href: '/stats',      label: 'Stats'      }
+		{ href: `${base}/`,           label: 'Home'       },
+		{ href: `${base}/archive`,    label: 'Archive'    },
+		{ href: `${base}/calculator`, label: 'Calculator' },
+		{ href: `${base}/stats`,      label: 'Stats'      }
 	];
 
 	function isActive(href: string) {
-		if (href === '/') return page.url.pathname === '/';
-		return page.url.pathname.startsWith(href);
+		const pathname = page.url.pathname;
+		if (href === `${base}/` || href === base) {
+			return pathname === `${base}/` || pathname === base || pathname === '';
+		}
+		return pathname.startsWith(href);
 	}
 </script>
 
