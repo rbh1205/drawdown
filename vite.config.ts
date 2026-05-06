@@ -2,6 +2,8 @@ import { sveltekit } from '@sveltejs/kit/vite';
 import { SvelteKitPWA } from '@vite-pwa/sveltekit';
 import { defineConfig } from 'vite';
 
+const base = process.env.BASE_PATH ?? '';
+
 export default defineConfig({
 	plugins: [
 		sveltekit(),
@@ -9,36 +11,36 @@ export default defineConfig({
 			strategies: 'generateSW',
 			registerType: 'autoUpdate',
 			manifest: {
-				id: '/',
-				scope: '/',
+				id: `${base}/`,
+				scope: `${base}/`,
 				name: 'Coffee Tracker',
 				short_name: 'Coffee',
 				description: 'Personal specialty coffee grind tracker',
-				start_url: '/',
+				start_url: `${base}/`,
 				display: 'standalone',
 				background_color: '#1c1917',
 				theme_color: '#c8a96e',
 				icons: [
 					{
-						src: '/icons/icon-192.png',
+						src: `${base}/icons/icon-192.png`,
 						sizes: '192x192',
 						type: 'image/png',
 						purpose: 'any'
 					},
 					{
-						src: '/icons/icon-192.png',
+						src: `${base}/icons/icon-192.png`,
 						sizes: '192x192',
 						type: 'image/png',
 						purpose: 'maskable'
 					},
 					{
-						src: '/icons/icon-512.png',
+						src: `${base}/icons/icon-512.png`,
 						sizes: '512x512',
 						type: 'image/png',
 						purpose: 'any'
 					},
 					{
-						src: '/icons/icon-512.png',
+						src: `${base}/icons/icon-512.png`,
 						sizes: '512x512',
 						type: 'image/png',
 						purpose: 'maskable'
